@@ -71,6 +71,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
@@ -99,7 +100,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(797, 309);
+            this.chart1.Size = new System.Drawing.Size(797, 317);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
