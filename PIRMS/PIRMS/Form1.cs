@@ -21,28 +21,12 @@ namespace PIRMS
             InitializeComponent();
             // Vyvolej timer tick, aby se načetly existující porty
             this.ComPortRefreshTimer_Tick(this, new EventArgs());
-            this.Load += new EventHandler(Form1_Load);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            textBox1.Text = "9600"; //nastavi textbox boundate na 9600 jako default
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-
         }
 
         private void button4_Click(object sender, EventArgs e) //pridat port do listu
         {
-            string selectedCombo = ComPortSelectCB.SelectedItem?.ToString();
-            string textInput = textBox1.Text;
+            string selectedCombo = ComPortSelectCB.Text;
+            string textInput = BaudRateTB.Text;
 
             if (!string.IsNullOrWhiteSpace(selectedCombo) && !string.IsNullOrWhiteSpace(textInput))
             {
@@ -50,7 +34,7 @@ namespace PIRMS
                 listBox1.Items.Add(combined);
 
                 // Vrátíme zpět defaultní hodnotu po přidání
-                textBox1.Text = "9600";
+                BaudRateTB.Text = "9600";
             }
             else
             {
