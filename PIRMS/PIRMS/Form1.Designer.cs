@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -41,11 +42,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ComPortSelectCB = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.ComPortRefreshTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -115,13 +117,13 @@
             this.panel2.Location = new System.Drawing.Point(252, 0);
             this.panel2.MinimumSize = new System.Drawing.Size(128, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(226, 140);
+            this.panel2.Size = new System.Drawing.Size(226, 143);
             this.panel2.TabIndex = 12;
             // 
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(144, 104);
+            this.button5.Location = new System.Drawing.Point(144, 107);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 11;
@@ -154,7 +156,7 @@
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.ComPortSelectCB);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -190,10 +192,10 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Boundrate:";
             // 
-            // comboBox1
+            // ComPortSelectCB
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.ComPortSelectCB.FormattingEnabled = true;
+            this.ComPortSelectCB.Items.AddRange(new object[] {
             "COM1",
             "COM2",
             "COM3",
@@ -203,10 +205,10 @@
             "COM7",
             "COM8",
             "COM9"});
-            this.comboBox1.Location = new System.Drawing.Point(78, 44);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(74, 21);
-            this.comboBox1.TabIndex = 1;
+            this.ComPortSelectCB.Location = new System.Drawing.Point(78, 44);
+            this.ComPortSelectCB.Name = "ComPortSelectCB";
+            this.ComPortSelectCB.Size = new System.Drawing.Size(74, 21);
+            this.ComPortSelectCB.TabIndex = 1;
             // 
             // label2
             // 
@@ -230,7 +232,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(723, 50);
+            this.button2.Location = new System.Drawing.Point(723, 53);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(65, 30);
             this.button2.TabIndex = 6;
@@ -240,12 +242,18 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(666, 82);
+            this.button1.Location = new System.Drawing.Point(666, 85);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(122, 45);
             this.button1.TabIndex = 5;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // ComPortRefreshTimer
+            // 
+            this.ComPortRefreshTimer.Enabled = true;
+            this.ComPortRefreshTimer.Interval = 1000;
+            this.ComPortRefreshTimer.Tick += new System.EventHandler(this.ComPortRefreshTimer_Tick);
             // 
             // Form1
             // 
@@ -275,7 +283,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox ComPortSelectCB;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
@@ -286,6 +294,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Timer ComPortRefreshTimer;
     }
 }
 

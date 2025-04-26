@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PIRMS.Communication;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,8 @@ namespace PIRMS
         public Form1()
         {
             InitializeComponent();
+            // Vyvolej timer tick, aby se načetly existující porty
+            this.ComPortRefreshTimer_Tick(this, new EventArgs());
             this.Load += new EventHandler(Form1_Load);
         }
 
@@ -38,7 +41,7 @@ namespace PIRMS
 
         private void button4_Click(object sender, EventArgs e) //pridat port do listu
         {
-            string selectedCombo = comboBox1.SelectedItem?.ToString();
+            string selectedCombo = ComPortSelectCB.SelectedItem?.ToString();
             string textInput = textBox1.Text;
 
             if (!string.IsNullOrWhiteSpace(selectedCombo) && !string.IsNullOrWhiteSpace(textInput))
@@ -65,6 +68,12 @@ namespace PIRMS
             {
                 MessageBox.Show("Vyber položku, kterou chceš smazat.");
             }
+        }
+
+        private void ComPortRefreshTimer_Tick(object sender, EventArgs e)
+        {
+            ComPortSelectCB.Items.Clear();
+            ComPortSelectCB.Items.AddRange(SerialCommunication.GetAllAvailablePorts());
         }
     }
 }
