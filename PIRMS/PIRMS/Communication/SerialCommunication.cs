@@ -12,6 +12,9 @@ namespace PIRMS.Communication
         private SerialPort _port;
         public string PortName { get => _port.PortName; }
 
+        public int LastRecordedValue { get; private set; }
+        public bool NewDataReceived { get; set; }
+
         public static string[] GetAllAvailablePorts()
         {
             return SerialPort.GetPortNames();
@@ -29,6 +32,7 @@ namespace PIRMS.Communication
 
             _port = new SerialPort(portName);
             _port.DataReceived += _port_DataReceived;
+            LastRecordedValue = 0;
         }
 
         private void _port_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -37,6 +41,12 @@ namespace PIRMS.Communication
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
             Console.WriteLine($"Data Received ({sp.PortName}): {indata}");
+
+            if (int.TryParse(indata, out int result))
+            {
+                LastRecordedValue = result;
+                NewDataReceived = true;
+            }
         }
 
         public void Open()

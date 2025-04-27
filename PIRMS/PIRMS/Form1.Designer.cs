@@ -31,12 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.DataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.AddedPortsLB = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BaudRateTB = new System.Windows.Forms.TextBox();
@@ -48,11 +47,13 @@
             this.ClearButton = new System.Windows.Forms.Button();
             this.StartButton = new System.Windows.Forms.Button();
             this.ComPortRefreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.DataRefreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.StopButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataChart)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -68,12 +69,13 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.splitContainer1.Panel1.Controls.Add(this.chart1);
+            this.splitContainer1.Panel1.Controls.Add(this.DataChart);
             this.splitContainer1.Panel1MinSize = 310;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitContainer1.Panel2.Controls.Add(this.StopButton);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.ClearButton);
@@ -84,26 +86,21 @@
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
-            // chart1
+            // DataChart
             // 
-            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DataChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.AxisX.LabelStyle.Format = "HH:mm:ss";
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            this.DataChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(3, 3);
-            this.chart1.Name = "chart1";
-            series1.BorderWidth = 4;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(797, 317);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.DataChart.Legends.Add(legend1);
+            this.DataChart.Location = new System.Drawing.Point(3, 3);
+            this.DataChart.Name = "DataChart";
+            this.DataChart.Size = new System.Drawing.Size(797, 317);
+            this.DataChart.TabIndex = 0;
+            this.DataChart.Text = "chart1";
             // 
             // panel2
             // 
@@ -111,18 +108,18 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.listBox1);
+            this.panel2.Controls.Add(this.AddedPortsLB);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(252, 0);
             this.panel2.MinimumSize = new System.Drawing.Size(128, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(226, 149);
+            this.panel2.Size = new System.Drawing.Size(226, 152);
             this.panel2.TabIndex = 12;
             // 
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(144, 101);
+            this.button5.Location = new System.Drawing.Point(144, 104);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 11;
@@ -130,16 +127,16 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // listBox1
+            // AddedPortsLB
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.AddedPortsLB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(7, 29);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(131, 95);
-            this.listBox1.TabIndex = 8;
+            this.AddedPortsLB.FormattingEnabled = true;
+            this.AddedPortsLB.Location = new System.Drawing.Point(7, 29);
+            this.AddedPortsLB.Name = "AddedPortsLB";
+            this.AddedPortsLB.Size = new System.Drawing.Size(131, 95);
+            this.AddedPortsLB.TabIndex = 8;
             // 
             // label4
             // 
@@ -231,7 +228,7 @@
             // ClearButton
             // 
             this.ClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearButton.Location = new System.Drawing.Point(666, 10);
+            this.ClearButton.Location = new System.Drawing.Point(484, 78);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(122, 49);
             this.ClearButton.TabIndex = 6;
@@ -242,7 +239,7 @@
             // StartButton
             // 
             this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartButton.Location = new System.Drawing.Point(666, 74);
+            this.StartButton.Location = new System.Drawing.Point(666, 77);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(122, 50);
             this.StartButton.TabIndex = 5;
@@ -255,6 +252,22 @@
             this.ComPortRefreshTimer.Enabled = true;
             this.ComPortRefreshTimer.Interval = 1000;
             this.ComPortRefreshTimer.Tick += new System.EventHandler(this.ComPortRefreshTimer_Tick);
+            // 
+            // DataRefreshTimer
+            // 
+            this.DataRefreshTimer.Interval = 50;
+            this.DataRefreshTimer.Tick += new System.EventHandler(this.DataRefreshTimer_Tick);
+            // 
+            // StopButton
+            // 
+            this.StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.StopButton.Location = new System.Drawing.Point(666, 10);
+            this.StopButton.Name = "StopButton";
+            this.StopButton.Size = new System.Drawing.Size(122, 50);
+            this.StopButton.TabIndex = 13;
+            this.StopButton.Text = "Stop";
+            this.StopButton.UseVisualStyleBackColor = true;
+            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
             // 
             // Form1
             // 
@@ -270,7 +283,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataChart)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -281,7 +294,7 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart DataChart;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox BaudRateTB;
         private System.Windows.Forms.ComboBox ComPortSelectCB;
@@ -290,12 +303,14 @@
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox AddedPortsLB;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Timer ComPortRefreshTimer;
+        private System.Windows.Forms.Timer DataRefreshTimer;
+        private System.Windows.Forms.Button StopButton;
     }
 }
 
