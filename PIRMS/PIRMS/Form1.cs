@@ -15,6 +15,7 @@ namespace PIRMS
 
     public partial class Form1 : Form
     {
+        List<SerialCommunication> openComms = new List<SerialCommunication>();
 
         public Form1()
         {
@@ -35,6 +36,8 @@ namespace PIRMS
 
                 // Vrátíme zpět defaultní hodnotu po přidání
                 BaudRateTB.Text = "9600";
+
+                openComms.Add(new SerialCommunication(selectedCombo));
             }
             else
             {
@@ -46,7 +49,9 @@ namespace PIRMS
         {
             if (listBox1.SelectedItem != null)
             {
+                int index = listBox1.SelectedIndex;
                 listBox1.Items.Remove(listBox1.SelectedItem);
+                openComms.RemoveAt(index);
             }
             else
             {
@@ -58,6 +63,22 @@ namespace PIRMS
         {
             ComPortSelectCB.Items.Clear();
             ComPortSelectCB.Items.AddRange(SerialCommunication.GetAllAvailablePorts());
+        }
+
+        private void StartButton_Click(object sender, EventArgs e)
+        {
+            foreach (SerialCommunication com in openComms)
+            {
+                com.Open();
+            }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            foreach (SerialCommunication com in openComms)
+            {
+                com.Close();
+            }
         }
     }
 }
