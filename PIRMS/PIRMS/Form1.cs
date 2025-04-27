@@ -26,18 +26,22 @@ namespace PIRMS
 
         private void button4_Click(object sender, EventArgs e) //pridat port do listu
         {
-            string selectedCombo = ComPortSelectCB.Text;
-            string textInput = BaudRateTB.Text;
+            string selectedPort = ComPortSelectCB.Text;
+            string baudRate = BaudRateTB.Text;
 
-            if (!string.IsNullOrWhiteSpace(selectedCombo) && !string.IsNullOrWhiteSpace(textInput))
+            if (!string.IsNullOrWhiteSpace(selectedPort) && !string.IsNullOrWhiteSpace(baudRate))
             {
-                string combined = $"{selectedCombo} - {textInput}";
+                // Zkontroluj, zda už tento port není vybrán
+                foreach (var com in openComms)
+                {
+                    if (com.PortName == selectedPort)
+                        return;
+                }
+
+                string combined = $"{selectedPort} - {baudRate}";
                 listBox1.Items.Add(combined);
 
-                // Vrátíme zpět defaultní hodnotu po přidání
-                BaudRateTB.Text = "9600";
-
-                openComms.Add(new SerialCommunication(selectedCombo));
+                openComms.Add(new SerialCommunication(selectedPort));
             }
             else
             {

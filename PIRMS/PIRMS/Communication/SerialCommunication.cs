@@ -10,6 +10,7 @@ namespace PIRMS.Communication
     internal class SerialCommunication
     {
         private SerialPort _port;
+        public string PortName { get => _port.PortName; }
 
         public static string[] GetAllAvailablePorts()
         {
