@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.DataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.StopButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.AddedPortsLB = new System.Windows.Forms.ListBox();
@@ -46,9 +47,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ClearButton = new System.Windows.Forms.Button();
             this.StartButton = new System.Windows.Forms.Button();
-            this.ComPortRefreshTimer = new System.Windows.Forms.Timer(this.components);
             this.DataRefreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.StopButton = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -56,6 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataChart)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -63,6 +64,7 @@
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -75,32 +77,41 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.splitContainer1.Panel2.Controls.Add(this.StopButton);
+            this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Panel2.Controls.Add(this.ClearButton);
-            this.splitContainer1.Panel2.Controls.Add(this.StartButton);
             this.splitContainer1.Panel2MinSize = 125;
-            this.splitContainer1.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer1.SplitterDistance = 315;
-            this.splitContainer1.SplitterWidth = 1;
+            this.splitContainer1.Size = new System.Drawing.Size(1467, 831);
+            this.splitContainer1.SplitterDistance = 581;
+            this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 0;
             // 
             // DataChart
             // 
-            this.DataChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.AxisX.LabelStyle.Format = "HH:mm:ss";
-            chartArea1.Name = "ChartArea1";
-            this.DataChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.DataChart.Legends.Add(legend1);
-            this.DataChart.Location = new System.Drawing.Point(3, 3);
+            chartArea2.AxisX.LabelStyle.Format = "HH:mm:ss";
+            chartArea2.Name = "ChartArea1";
+            this.DataChart.ChartAreas.Add(chartArea2);
+            this.DataChart.Dock = System.Windows.Forms.DockStyle.Top;
+            legend2.Name = "Legend1";
+            this.DataChart.Legends.Add(legend2);
+            this.DataChart.Location = new System.Drawing.Point(0, 0);
+            this.DataChart.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.DataChart.Name = "DataChart";
-            this.DataChart.Size = new System.Drawing.Size(797, 317);
+            this.DataChart.Size = new System.Drawing.Size(1467, 575);
             this.DataChart.TabIndex = 0;
             this.DataChart.Text = "chart1";
+            // 
+            // StopButton
+            // 
+            this.StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.StopButton.Location = new System.Drawing.Point(358, 137);
+            this.StopButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.StopButton.Name = "StopButton";
+            this.StopButton.Size = new System.Drawing.Size(224, 92);
+            this.StopButton.TabIndex = 13;
+            this.StopButton.Text = "Stop";
+            this.StopButton.UseVisualStyleBackColor = true;
+            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
             // 
             // panel2
             // 
@@ -110,18 +121,20 @@
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.AddedPortsLB);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(252, 0);
-            this.panel2.MinimumSize = new System.Drawing.Size(128, 0);
+            this.panel2.Location = new System.Drawing.Point(462, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel2.MinimumSize = new System.Drawing.Size(235, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(226, 152);
+            this.panel2.Size = new System.Drawing.Size(414, 287);
             this.panel2.TabIndex = 12;
             // 
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(144, 104);
+            this.button5.Location = new System.Drawing.Point(262, 184);
+            this.button5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(138, 42);
             this.button5.TabIndex = 11;
             this.button5.Text = "Smazat";
             this.button5.UseVisualStyleBackColor = true;
@@ -133,17 +146,20 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AddedPortsLB.FormattingEnabled = true;
-            this.AddedPortsLB.Location = new System.Drawing.Point(7, 29);
+            this.AddedPortsLB.ItemHeight = 24;
+            this.AddedPortsLB.Location = new System.Drawing.Point(13, 54);
+            this.AddedPortsLB.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.AddedPortsLB.Name = "AddedPortsLB";
-            this.AddedPortsLB.Size = new System.Drawing.Size(131, 95);
+            this.AddedPortsLB.Size = new System.Drawing.Size(237, 172);
             this.AddedPortsLB.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(2, 7);
+            this.label4.Location = new System.Drawing.Point(4, 13);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 19);
+            this.label4.Size = new System.Drawing.Size(249, 35);
             this.label4.TabIndex = 9;
             this.label4.Text = "Seznam portů:";
             // 
@@ -157,24 +173,27 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.MinimumSize = new System.Drawing.Size(245, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel1.MinimumSize = new System.Drawing.Size(449, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(246, 134);
+            this.panel1.Size = new System.Drawing.Size(451, 248);
             this.panel1.TabIndex = 11;
             // 
             // BaudRateTB
             // 
-            this.BaudRateTB.Location = new System.Drawing.Point(78, 71);
+            this.BaudRateTB.Location = new System.Drawing.Point(143, 131);
+            this.BaudRateTB.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.BaudRateTB.Name = "BaudRateTB";
-            this.BaudRateTB.Size = new System.Drawing.Size(74, 20);
+            this.BaudRateTB.Size = new System.Drawing.Size(132, 29);
             this.BaudRateTB.TabIndex = 2;
             this.BaudRateTB.Text = "9600";
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(158, 42);
+            this.button4.Location = new System.Drawing.Point(290, 78);
+            this.button4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(138, 42);
             this.button4.TabIndex = 10;
             this.button4.Text = "Přidat";
             this.button4.UseVisualStyleBackColor = true;
@@ -183,9 +202,10 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(3, 74);
+            this.label3.Location = new System.Drawing.Point(6, 137);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.Size = new System.Drawing.Size(126, 24);
             this.label3.TabIndex = 4;
             this.label3.Text = "Baudrate:";
             // 
@@ -202,35 +222,39 @@
             "COM7",
             "COM8",
             "COM9"});
-            this.ComPortSelectCB.Location = new System.Drawing.Point(78, 44);
+            this.ComPortSelectCB.Location = new System.Drawing.Point(143, 81);
+            this.ComPortSelectCB.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ComPortSelectCB.Name = "ComPortSelectCB";
-            this.ComPortSelectCB.Size = new System.Drawing.Size(74, 21);
+            this.ComPortSelectCB.Size = new System.Drawing.Size(132, 32);
             this.ComPortSelectCB.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(3, 47);
+            this.label2.Location = new System.Drawing.Point(6, 87);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.Size = new System.Drawing.Size(70, 24);
             this.label2.TabIndex = 3;
             this.label2.Text = "COM:";
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(7, 9);
+            this.label1.Location = new System.Drawing.Point(13, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 19);
+            this.label1.Size = new System.Drawing.Size(249, 35);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nastavení portu:";
             // 
             // ClearButton
             // 
-            this.ClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearButton.Location = new System.Drawing.Point(484, 78);
+            this.ClearButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ClearButton.Location = new System.Drawing.Point(12, 139);
+            this.ClearButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(122, 49);
+            this.ClearButton.Size = new System.Drawing.Size(224, 90);
             this.ClearButton.TabIndex = 6;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
@@ -239,44 +263,39 @@
             // StartButton
             // 
             this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartButton.Location = new System.Drawing.Point(666, 77);
+            this.StartButton.Location = new System.Drawing.Point(358, 21);
+            this.StartButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(122, 50);
+            this.StartButton.Size = new System.Drawing.Size(224, 92);
             this.StartButton.TabIndex = 5;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
-            // 
-            // ComPortRefreshTimer
-            // 
-            this.ComPortRefreshTimer.Enabled = true;
-            this.ComPortRefreshTimer.Interval = 1000;
-            this.ComPortRefreshTimer.Tick += new System.EventHandler(this.ComPortRefreshTimer_Tick);
             // 
             // DataRefreshTimer
             // 
             this.DataRefreshTimer.Interval = 50;
             this.DataRefreshTimer.Tick += new System.EventHandler(this.DataRefreshTimer_Tick);
             // 
-            // StopButton
+            // panel3
             // 
-            this.StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StopButton.Location = new System.Drawing.Point(666, 10);
-            this.StopButton.Name = "StopButton";
-            this.StopButton.Size = new System.Drawing.Size(122, 50);
-            this.StopButton.TabIndex = 13;
-            this.StopButton.Text = "Stop";
-            this.StopButton.UseVisualStyleBackColor = true;
-            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
+            this.panel3.Controls.Add(this.StartButton);
+            this.panel3.Controls.Add(this.ClearButton);
+            this.panel3.Controls.Add(this.StopButton);
+            this.panel3.Location = new System.Drawing.Point(876, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(588, 248);
+            this.panel3.TabIndex = 14;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1467, 831);
             this.Controls.Add(this.splitContainer1);
-            this.MinimumSize = new System.Drawing.Size(816, 489);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.MinimumSize = new System.Drawing.Size(1476, 849);
             this.Name = "Form1";
             this.Text = "PIRMS";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -287,6 +306,7 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -308,9 +328,9 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Timer ComPortRefreshTimer;
         private System.Windows.Forms.Timer DataRefreshTimer;
         private System.Windows.Forms.Button StopButton;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 

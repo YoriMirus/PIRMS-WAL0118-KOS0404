@@ -21,8 +21,6 @@ namespace PIRMS
         public Form1()
         {
             InitializeComponent();
-            // Vyvolej timer tick, aby se načetly existující porty
-            this.ComPortRefreshTimer_Tick(this, new EventArgs());
         }
 
         private void button4_Click(object sender, EventArgs e) //pridat port do listu
@@ -72,12 +70,6 @@ namespace PIRMS
             {
                 MessageBox.Show("Vyber položku, kterou chceš smazat.");
             }
-        }
-
-        private void ComPortRefreshTimer_Tick(object sender, EventArgs e)
-        {
-            ComPortSelectCB.Items.Clear();
-            ComPortSelectCB.Items.AddRange(SerialCommunication.GetAllAvailablePorts());
         }
 
         private void StartButton_Click(object sender, EventArgs e)
