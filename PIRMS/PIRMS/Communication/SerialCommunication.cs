@@ -22,14 +22,6 @@ namespace PIRMS.Communication
 
         public SerialCommunication(string portName)
         {
-            // Zkontrolujme, že nezadáváme blbosti
-            // Můžeme kdyžtak potom chytnout později a ukázat uživateli messagebox
-            string[] strings = SerialPort.GetPortNames();
-            if (strings.Contains(portName) == false)
-            {
-                throw new ArgumentException("Zadaný port neexistuje v seznamů dostupných portů.");
-            }
-
             _port = new SerialPort(portName);
             _port.DataReceived += _port_DataReceived;
             LastRecordedValue = 0;

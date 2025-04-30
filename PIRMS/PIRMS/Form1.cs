@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.IO;
 
 namespace PIRMS
 {
@@ -68,7 +69,7 @@ namespace PIRMS
             }
             else
             {
-                MessageBox.Show("Vyber položku, kterou chceš smazat.");
+                MessageBox.Show("Vyberte položku, kterou chcete smazat.");
             }
         }
 
@@ -77,9 +78,19 @@ namespace PIRMS
             DataRefreshTimer.Enabled = true;
             foreach (SerialCommunication com in openComms)
             {
-                com.Open();
+
+                try
+                {
+                    com.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Chyba při otevírání portu {com.PortName}:\n{ex.Message}", "Výjimka", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
         }
+        
         private void StopButton_Click(object sender, EventArgs e)
         {
             DataRefreshTimer.Enabled = false;
@@ -110,5 +121,49 @@ namespace PIRMS
                 openComms[i].NewDataReceived = false;
             }
         }
-    }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoadListBoxItems();
+            LoadSelectedPorts();
+
+        }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) //ulozi nastaveni pri zavreni
+        {
+            SaveListBoxItems();
+        }
+        private void SaveListBoxItems() //ulozi veci z listboxu
+        {
+            File.WriteAllLines("settings.txt", AddedPortsLB.Items.Cast<string>());
+        }
+        private void LoadListBoxItems()
+        {
+            if (File.Exists("settings.txt"))
+            {
+                AddedPortsLB.Items.Clear();
+                var lines = File.ReadAllLines("settings.txt");
+                AddedPortsLB.Items.AddRange(lines);
+            }
+
+        }
+
+        private void LoadSelectedPorts()
+        {
+            if (File.Exists("settings.txt"))
+            {
+                var lines = File.ReadAllLines("settings.txt");
+
+                foreach (var line in lines)
+                {
+                    var parts = line.Split(new[] { " - " }, StringSplitOptions.None);
+                    if (parts.Length > 0)
+                    {
+                        string comPort = parts[0].Trim(); // Např. "COM1"
+                        openComms.Add(new SerialCommunication( comPort));
+                    }
+
+
+                }
+            }
+        }
+}
 }
