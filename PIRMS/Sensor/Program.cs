@@ -59,6 +59,8 @@ namespace Sensor
 
         static void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
         {
+            // Tento kód jsem šlohl z internetu. Jenom jsem k němu přidal to sampleNum pro debug účely a port.Write 
+
             sampleNum++;
             // copy buffer into an array of integers
             Int16[] values = new Int16[e.Buffer.Length / 2];
