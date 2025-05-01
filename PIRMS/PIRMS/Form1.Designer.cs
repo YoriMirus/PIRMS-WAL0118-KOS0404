@@ -28,25 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.DataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.ExportButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.AddPortButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
             this.StartButton = new System.Windows.Forms.Button();
             this.BaudRateTB = new System.Windows.Forms.TextBox();
             this.ComPortSelectCB = new System.Windows.Forms.ComboBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.RemovePortButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.AddedPortsLB = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.DataRefreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.ExportButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -74,12 +72,12 @@
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.splitContainer1.Panel2.Controls.Add(this.ExportButton);
             this.splitContainer1.Panel2.Controls.Add(this.ClearButton);
-            this.splitContainer1.Panel2.Controls.Add(this.button4);
+            this.splitContainer1.Panel2.Controls.Add(this.AddPortButton);
             this.splitContainer1.Panel2.Controls.Add(this.StopButton);
             this.splitContainer1.Panel2.Controls.Add(this.StartButton);
             this.splitContainer1.Panel2.Controls.Add(this.BaudRateTB);
             this.splitContainer1.Panel2.Controls.Add(this.ComPortSelectCB);
-            this.splitContainer1.Panel2.Controls.Add(this.button5);
+            this.splitContainer1.Panel2.Controls.Add(this.RemovePortButton);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.AddedPortsLB);
@@ -87,7 +85,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2MinSize = 125;
             this.splitContainer1.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer1.SplitterDistance = 314;
+            this.splitContainer1.SplitterDistance = 323;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -96,16 +94,26 @@
             this.DataChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.AxisX.LabelStyle.Format = "HH:mm:ss";
-            chartArea1.Name = "ChartArea1";
-            this.DataChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.DataChart.Legends.Add(legend1);
+            chartArea2.AxisX.LabelStyle.Format = "HH:mm:ss";
+            chartArea2.Name = "ChartArea1";
+            this.DataChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.DataChart.Legends.Add(legend2);
             this.DataChart.Location = new System.Drawing.Point(0, 0);
             this.DataChart.Name = "DataChart";
-            this.DataChart.Size = new System.Drawing.Size(800, 317);
+            this.DataChart.Size = new System.Drawing.Size(800, 326);
             this.DataChart.TabIndex = 0;
             this.DataChart.Text = "chart1";
+            // 
+            // ExportButton
+            // 
+            this.ExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExportButton.Location = new System.Drawing.Point(542, 27);
+            this.ExportButton.Name = "ExportButton";
+            this.ExportButton.Size = new System.Drawing.Size(120, 40);
+            this.ExportButton.TabIndex = 14;
+            this.ExportButton.Text = "Export";
+            this.ExportButton.UseVisualStyleBackColor = true;
             // 
             // ClearButton
             // 
@@ -118,15 +126,15 @@
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // button4
+            // AddPortButton
             // 
-            this.button4.Location = new System.Drawing.Point(155, 36);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Přidat";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.AddPortButton.Location = new System.Drawing.Point(155, 36);
+            this.AddPortButton.Name = "AddPortButton";
+            this.AddPortButton.Size = new System.Drawing.Size(75, 23);
+            this.AddPortButton.TabIndex = 10;
+            this.AddPortButton.Text = "Přidat";
+            this.AddPortButton.UseVisualStyleBackColor = true;
+            this.AddPortButton.Click += new System.EventHandler(this.AddPortButton_Click);
             // 
             // StopButton
             // 
@@ -176,16 +184,16 @@
             this.ComPortSelectCB.Size = new System.Drawing.Size(74, 21);
             this.ComPortSelectCB.TabIndex = 1;
             // 
-            // button5
+            // RemovePortButton
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(455, 101);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Smazat";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.RemovePortButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemovePortButton.Location = new System.Drawing.Point(456, 28);
+            this.RemovePortButton.Name = "RemovePortButton";
+            this.RemovePortButton.Size = new System.Drawing.Size(75, 23);
+            this.RemovePortButton.TabIndex = 11;
+            this.RemovePortButton.Text = "Smazat";
+            this.RemovePortButton.UseVisualStyleBackColor = true;
+            this.RemovePortButton.Click += new System.EventHandler(this.RemovePortButton_Click);
             // 
             // label3
             // 
@@ -213,7 +221,7 @@
             this.AddedPortsLB.FormattingEnabled = true;
             this.AddedPortsLB.Location = new System.Drawing.Point(265, 28);
             this.AddedPortsLB.Name = "AddedPortsLB";
-            this.AddedPortsLB.Size = new System.Drawing.Size(185, 95);
+            this.AddedPortsLB.Size = new System.Drawing.Size(185, 56);
             this.AddedPortsLB.TabIndex = 8;
             // 
             // label1
@@ -233,21 +241,6 @@
             this.label4.Size = new System.Drawing.Size(136, 19);
             this.label4.TabIndex = 9;
             this.label4.Text = "Seznam portů:";
-            // 
-            // DataRefreshTimer
-            // 
-            this.DataRefreshTimer.Interval = 50;
-            this.DataRefreshTimer.Tick += new System.EventHandler(this.DataRefreshTimer_Tick);
-            // 
-            // ExportButton
-            // 
-            this.ExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportButton.Location = new System.Drawing.Point(542, 27);
-            this.ExportButton.Name = "ExportButton";
-            this.ExportButton.Size = new System.Drawing.Size(120, 40);
-            this.ExportButton.TabIndex = 14;
-            this.ExportButton.Text = "Export";
-            this.ExportButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -284,9 +277,8 @@
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox AddedPortsLB;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Timer DataRefreshTimer;
+        private System.Windows.Forms.Button AddPortButton;
+        private System.Windows.Forms.Button RemovePortButton;
         private System.Windows.Forms.Button StopButton;
         private System.Windows.Forms.Button ExportButton;
     }

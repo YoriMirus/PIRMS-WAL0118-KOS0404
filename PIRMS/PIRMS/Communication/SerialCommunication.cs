@@ -10,35 +10,41 @@ namespace PIRMS.Communication
     internal class SerialCommunication
     {
         private SerialPort _port;
+        private Action<SerialCommunication, short[]> _onDataReceived;
         public string PortName { get => _port.PortName; }
-
-        public int LastRecordedValue { get; private set; }
-        public bool NewDataReceived { get; set; }
 
         public static string[] GetAllAvailablePorts()
         {
             return SerialPort.GetPortNames();
         }
 
-        public SerialCommunication(string portName)
+        public SerialCommunication(string portName, Action<SerialCommunication, short[]> onDataReceived)
         {
             _port = new SerialPort(portName);
-            _port.DataReceived += _port_DataReceived;
-            LastRecordedValue = 0;
+            _port.DataReceived += Port_DataReceived;
+            _onDataReceived = onDataReceived;
         }
 
-        private void _port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             // Pro debug účely. Napíše text do konzole (viditelná pouze ve visual studiu)
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
             Console.WriteLine($"Data Received ({sp.PortName}): {indata}");
 
-            if (int.TryParse(indata, out int result))
+            // Převeď string na short[]
+            string[] dataNumbers = indata.Split(';');
+            short[] data = new short[dataNumbers.Length];
+            for (int i = 0; i < dataNumbers.Length; i++)
             {
-                LastRecordedValue = result;
-                NewDataReceived = true;
+                if (!short.TryParse(dataNumbers[i], out data[i]))
+                {
+                    return;
+                }
             }
+
+            // Zavolej metodu, která má na tyto data reagovat
+            _onDataReceived(this, data);
         }
 
         public void Open()

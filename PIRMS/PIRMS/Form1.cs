@@ -24,7 +24,7 @@ namespace PIRMS
             InitializeComponent();
         }
 
-        private void button4_Click(object sender, EventArgs e) //pridat port do listu
+        private void AddPortButton_Click(object sender, EventArgs e) //pridat port do listu
         {
             string selectedPort = ComPortSelectCB.Text;
             string baudRate = BaudRateTB.Text;
@@ -43,7 +43,7 @@ namespace PIRMS
 
                 // Přidat novou čáru do grafu
                 int seriesCount = DataChart.Series.Count;
-                openComms.Add(new SerialCommunication(selectedPort));
+                openComms.Add(new SerialCommunication(selectedPort, SerialDataReceived));
                 DataChart.Series.Add(selectedPort);
 
                 // Nastavit formát grafu (osa x je datetime, typ grafu je čára)
@@ -59,7 +59,7 @@ namespace PIRMS
 
         }
 
-        private void button5_Click(object sender, EventArgs e) //smazat port z listu
+        private void RemovePortButton_Click(object sender, EventArgs e) //smazat port z listu
         {
             if (AddedPortsLB.SelectedItem != null)
             {
@@ -81,10 +81,8 @@ namespace PIRMS
                 return;
             }
 
-            DataRefreshTimer.Enabled = true;
             foreach (SerialCommunication com in openComms)
             {
-
                 try
                 {
                     com.Open();
@@ -99,7 +97,6 @@ namespace PIRMS
         
         private void StopButton_Click(object sender, EventArgs e)
         {
-            DataRefreshTimer.Enabled = false;
             foreach (SerialCommunication com in openComms)
             {
                 com.Close();
@@ -114,19 +111,6 @@ namespace PIRMS
             }
         }
 
-        private void DataRefreshTimer_Tick(object sender, EventArgs e)
-        {
-            // Zkontrolujeme, zda přišly nové data
-            // Pokud ne, nic neděláme
-            if (!openComms.Where(x => x.NewDataReceived).Any())
-                return;
-
-            for (int i = 0; i < openComms.Count; i++)
-            {
-                DataChart.Series[i].Points.AddXY(DateTime.Now, openComms[i].LastRecordedValue);
-                openComms[i].NewDataReceived = false;
-            }
-        }
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadListBoxItems();
@@ -164,12 +148,17 @@ namespace PIRMS
                     if (parts.Length > 0)
                     {
                         string comPort = parts[0].Trim(); // Např. "COM1"
-                        openComms.Add(new SerialCommunication( comPort));
+                        openComms.Add(new SerialCommunication(comPort, SerialDataReceived));
                     }
 
 
                 }
             }
+        }
+
+        private void SerialDataReceived(SerialCommunication com, short[] data)
+        {
+
         }
     }
 }
