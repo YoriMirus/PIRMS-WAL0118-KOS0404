@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.DataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ClearButton = new System.Windows.Forms.Button();
@@ -46,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.DataRefreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.ExportButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -71,6 +72,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitContainer1.Panel2.Controls.Add(this.ExportButton);
             this.splitContainer1.Panel2.Controls.Add(this.ClearButton);
             this.splitContainer1.Panel2.Controls.Add(this.button4);
             this.splitContainer1.Panel2.Controls.Add(this.StopButton);
@@ -94,11 +96,11 @@
             this.DataChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea7.AxisX.LabelStyle.Format = "HH:mm:ss";
-            chartArea7.Name = "ChartArea1";
-            this.DataChart.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.DataChart.Legends.Add(legend7);
+            chartArea1.AxisX.LabelStyle.Format = "HH:mm:ss";
+            chartArea1.Name = "ChartArea1";
+            this.DataChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.DataChart.Legends.Add(legend1);
             this.DataChart.Location = new System.Drawing.Point(0, 0);
             this.DataChart.Name = "DataChart";
             this.DataChart.Size = new System.Drawing.Size(800, 317);
@@ -108,9 +110,9 @@
             // ClearButton
             // 
             this.ClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearButton.Location = new System.Drawing.Point(723, 61);
+            this.ClearButton.Location = new System.Drawing.Point(668, 27);
             this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(74, 30);
+            this.ClearButton.Size = new System.Drawing.Size(120, 40);
             this.ClearButton.TabIndex = 6;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
@@ -129,9 +131,9 @@
             // StopButton
             // 
             this.StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StopButton.Location = new System.Drawing.Point(674, 8);
+            this.StopButton.Location = new System.Drawing.Point(668, 83);
             this.StopButton.Name = "StopButton";
-            this.StopButton.Size = new System.Drawing.Size(122, 50);
+            this.StopButton.Size = new System.Drawing.Size(120, 40);
             this.StopButton.TabIndex = 13;
             this.StopButton.Text = "Stop";
             this.StopButton.UseVisualStyleBackColor = true;
@@ -140,9 +142,9 @@
             // StartButton
             // 
             this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartButton.Location = new System.Drawing.Point(545, 8);
+            this.StartButton.Location = new System.Drawing.Point(542, 83);
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(122, 50);
+            this.StartButton.Size = new System.Drawing.Size(120, 40);
             this.StartButton.TabIndex = 5;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = true;
@@ -237,6 +239,16 @@
             this.DataRefreshTimer.Interval = 50;
             this.DataRefreshTimer.Tick += new System.EventHandler(this.DataRefreshTimer_Tick);
             // 
+            // ExportButton
+            // 
+            this.ExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExportButton.Location = new System.Drawing.Point(542, 27);
+            this.ExportButton.Name = "ExportButton";
+            this.ExportButton.Size = new System.Drawing.Size(120, 40);
+            this.ExportButton.TabIndex = 14;
+            this.ExportButton.Text = "Export";
+            this.ExportButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,6 +288,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Timer DataRefreshTimer;
         private System.Windows.Forms.Button StopButton;
+        private System.Windows.Forms.Button ExportButton;
     }
 }
 

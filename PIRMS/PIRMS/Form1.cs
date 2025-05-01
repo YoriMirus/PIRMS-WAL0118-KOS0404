@@ -75,6 +75,12 @@ namespace PIRMS
 
         private void StartButton_Click(object sender, EventArgs e)
         {
+            if (openComms.Count == 0)
+            {
+                MessageBox.Show("Před zahájením zadejte sledované porty.");
+                return;
+            }
+
             DataRefreshTimer.Enabled = true;
             foreach (SerialCommunication com in openComms)
             {
@@ -165,5 +171,5 @@ namespace PIRMS
                 }
             }
         }
-}
+    }
 }
