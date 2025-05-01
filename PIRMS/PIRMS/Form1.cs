@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
 
@@ -21,7 +20,16 @@ namespace PIRMS
 
         public Form1()
         {
+            this.FormClosing += Form1_FormClosing1;
             InitializeComponent();
+        }
+
+        private void Form1_FormClosing1(object sender, FormClosingEventArgs e)
+        {
+            foreach (var com in openComms)
+            {
+                com.Close();
+            }
         }
 
         private void AddPortButton_Click(object sender, EventArgs e) //pridat port do listu
@@ -47,7 +55,7 @@ namespace PIRMS
                 DataChart.Series.Add(selectedPort);
 
                 // Nastavit formát grafu (osa x je datetime, typ grafu je čára)
-                DataChart.Series[seriesCount].XValueType = ChartValueType.Time;
+                DataChart.Series[seriesCount].XValueType = ChartValueType.Double;
                 DataChart.Series[seriesCount].ChartType = SeriesChartType.Line;
                 DataChart.Series[seriesCount].Enabled = true;
                 DataChart.Series[seriesCount].BorderWidth = 3;
@@ -158,7 +166,22 @@ namespace PIRMS
 
         private void SerialDataReceived(SerialCommunication com, short[] data)
         {
+            // Proveď FFT, tato funkce vrací seznam tuplů, každý tuple má v sobě frekvenci (Hz) a její amplitudu
+            List<(double, double)> spectrum = SignalParsing.CalculateFft(data);
 
+            // Vykreslení se musí provádět na vykreslovacím vlákně. V něm ale aktuálně nejsme, protože zpracovávání dat sériové linky se provádí ve svém vlastním vlákně
+            this.Invoke(new Action( () => { DisplayFFTData(spectrum, com.PortName); }));
+        }
+
+        private void DisplayFFTData(List<(double, double)> fft, string port)
+        {
+            var serie = DataChart.Series.Where(x => x.Name == port).First();
+            serie.Points.Clear();
+
+            foreach ((double,double) member in fft)
+            {
+                serie.Points.AddXY(member.Item1, member.Item2);
+            }
         }
     }
 }

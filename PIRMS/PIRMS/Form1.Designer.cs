@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.DataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ExportButton = new System.Windows.Forms.Button();
@@ -85,7 +85,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2MinSize = 125;
             this.splitContainer1.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer1.SplitterDistance = 323;
+            this.splitContainer1.SplitterDistance = 324;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -94,21 +94,20 @@
             this.DataChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.AxisX.LabelStyle.Format = "HH:mm:ss";
-            chartArea2.Name = "ChartArea1";
-            this.DataChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.DataChart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.DataChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.DataChart.Legends.Add(legend1);
             this.DataChart.Location = new System.Drawing.Point(0, 0);
             this.DataChart.Name = "DataChart";
-            this.DataChart.Size = new System.Drawing.Size(800, 326);
+            this.DataChart.Size = new System.Drawing.Size(800, 327);
             this.DataChart.TabIndex = 0;
             this.DataChart.Text = "chart1";
             // 
             // ExportButton
             // 
             this.ExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportButton.Location = new System.Drawing.Point(542, 27);
+            this.ExportButton.Location = new System.Drawing.Point(542, 29);
             this.ExportButton.Name = "ExportButton";
             this.ExportButton.Size = new System.Drawing.Size(120, 40);
             this.ExportButton.TabIndex = 14;
@@ -118,7 +117,7 @@
             // ClearButton
             // 
             this.ClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearButton.Location = new System.Drawing.Point(668, 27);
+            this.ClearButton.Location = new System.Drawing.Point(668, 29);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(120, 40);
             this.ClearButton.TabIndex = 6;
@@ -139,7 +138,7 @@
             // StopButton
             // 
             this.StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StopButton.Location = new System.Drawing.Point(668, 83);
+            this.StopButton.Location = new System.Drawing.Point(668, 85);
             this.StopButton.Name = "StopButton";
             this.StopButton.Size = new System.Drawing.Size(120, 40);
             this.StopButton.TabIndex = 13;
@@ -150,7 +149,7 @@
             // StartButton
             // 
             this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartButton.Location = new System.Drawing.Point(542, 83);
+            this.StartButton.Location = new System.Drawing.Point(542, 85);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(120, 40);
             this.StartButton.TabIndex = 5;
@@ -187,7 +186,7 @@
             // RemovePortButton
             // 
             this.RemovePortButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemovePortButton.Location = new System.Drawing.Point(456, 28);
+            this.RemovePortButton.Location = new System.Drawing.Point(456, 30);
             this.RemovePortButton.Name = "RemovePortButton";
             this.RemovePortButton.Size = new System.Drawing.Size(75, 23);
             this.RemovePortButton.TabIndex = 11;
@@ -221,7 +220,7 @@
             this.AddedPortsLB.FormattingEnabled = true;
             this.AddedPortsLB.Location = new System.Drawing.Point(265, 28);
             this.AddedPortsLB.Name = "AddedPortsLB";
-            this.AddedPortsLB.Size = new System.Drawing.Size(185, 56);
+            this.AddedPortsLB.Size = new System.Drawing.Size(185, 43);
             this.AddedPortsLB.TabIndex = 8;
             // 
             // label1

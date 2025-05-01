@@ -61,7 +61,7 @@ namespace Sensor
             {
                 DeviceNumber = deviceNum, // indicates which microphone to use
                 WaveFormat = new WaveFormat(rate: 44100, bits: 16, channels: 1),
-                BufferMilliseconds = 50
+                BufferMilliseconds = 100
             };
             waveIn.DataAvailable += WaveIn_DataAvailable;
             waveIn.StartRecording();

@@ -30,7 +30,6 @@ namespace PIRMS.Communication
             // Pro debug účely. Napíše text do konzole (viditelná pouze ve visual studiu)
             SerialPort sp = (SerialPort)sender;
             string indata = sp.ReadExisting();
-            Console.WriteLine($"Data Received ({sp.PortName}): {indata}");
 
             // Převeď string na short[]
             string[] dataNumbers = indata.Split(';');
