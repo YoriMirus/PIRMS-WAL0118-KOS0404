@@ -7,6 +7,10 @@ namespace Sensor
     {
         static void Main(string[] args)
         {
+            // Nastav text encoding na UTF-8 některé počítače (včetně mého) jinak diakritiku potom nedokážou vykreslit
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.InputEncoding = System.Text.Encoding.UTF8;
+
             Console.WriteLine("PIRMS - Čítač mikrofonu");
             int portNum = -1;
             while (portNum < 1)
