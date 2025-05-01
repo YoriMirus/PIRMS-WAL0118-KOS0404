@@ -39,7 +39,7 @@ namespace Sensor
             {
                 DeviceNumber = 0, // indicates which microphone to use
                 WaveFormat = new WaveFormat(rate: 44100, bits: 16, channels: 1),
-                BufferMilliseconds = 20
+                BufferMilliseconds = 50
             };
             waveIn.DataAvailable += WaveIn_DataAvailable;
             waveIn.StartRecording();
@@ -78,7 +78,9 @@ namespace Sensor
             string meter = "[" + bar.PadRight(60, '-') + "]";
             Console.CursorLeft = 0;
             Console.CursorVisible = false;
-            Console.Write($"{meter} {fraction * 100:00.0}% ({sampleNum})");
+
+            // Ano ty mezery tam jsou schválně, protože se šířka meteru občas liší a zůstávají tam stará písmena
+            Console.Write($"{meter} {fraction * 100:00.0}% ({sampleNum})            ");
 
             port.Write(string.Join(';', values));
         }
