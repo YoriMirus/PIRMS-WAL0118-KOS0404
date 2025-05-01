@@ -1,4 +1,5 @@
 ﻿using System.IO.Ports;
+using NAudio.CoreAudioApi;
 using NAudio.Wave;
 
 namespace Sensor
@@ -33,11 +34,32 @@ namespace Sensor
                 _ = int.TryParse(input, out baudRate);
             }
 
+            int deviceNum = -2;
+
+            while (deviceNum == -2)
+            {
+                MMDeviceEnumerator names = new MMDeviceEnumerator();
+                var devices = names.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active);
+
+                Console.WriteLine("Vyber mikrofon.");
+
+                for (int i = 0; i < devices.Count; i++)
+                {
+                    Console.WriteLine($"{i} - {devices[i].FriendlyName}");
+                }
+
+                if (!int.TryParse(Console.ReadLine(), out deviceNum))
+                    deviceNum = -2;
+            }
+            // Zařízení ve WaveIn se počítají od -1 z nějakého záhadného důvodu
+            // Takže zařízení 0 je vlastně zařízení -1
+            deviceNum--;
+
             Console.WriteLine("Otevírám port...");
 
             var waveIn = new WaveInEvent
             {
-                DeviceNumber = 0, // indicates which microphone to use
+                DeviceNumber = deviceNum, // indicates which microphone to use
                 WaveFormat = new WaveFormat(rate: 44100, bits: 16, channels: 1),
                 BufferMilliseconds = 50
             };
