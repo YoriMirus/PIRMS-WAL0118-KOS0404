@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.DataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.StartButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
-            this.StopButton = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.AddedPortsLB = new System.Windows.Forms.ListBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.BaudRateTB = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.StopButton = new System.Windows.Forms.Button();
+            this.StartButton = new System.Windows.Forms.Button();
+            this.BaudRateTB = new System.Windows.Forms.TextBox();
             this.ComPortSelectCB = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.AddedPortsLB = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.DataRefreshTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -56,9 +56,9 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -84,9 +84,9 @@
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2MinSize = 125;
-            this.splitContainer1.Size = new System.Drawing.Size(1467, 831);
-            this.splitContainer1.SplitterDistance = 581;
-            this.splitContainer1.SplitterWidth = 2;
+            this.splitContainer1.Size = new System.Drawing.Size(800, 450);
+            this.splitContainer1.SplitterDistance = 314;
+            this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
             // DataChart
@@ -94,118 +94,67 @@
             this.DataChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea4.AxisX.LabelStyle.Format = "HH:mm:ss";
-            chartArea4.Name = "ChartArea1";
-            this.DataChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.DataChart.Legends.Add(legend4);
+            chartArea7.AxisX.LabelStyle.Format = "HH:mm:ss";
+            chartArea7.Name = "ChartArea1";
+            this.DataChart.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.DataChart.Legends.Add(legend7);
             this.DataChart.Location = new System.Drawing.Point(0, 0);
-            this.DataChart.Margin = new System.Windows.Forms.Padding(6);
             this.DataChart.Name = "DataChart";
-            this.DataChart.Size = new System.Drawing.Size(1467, 588);
+            this.DataChart.Size = new System.Drawing.Size(800, 317);
             this.DataChart.TabIndex = 0;
             this.DataChart.Text = "chart1";
-            // 
-            // StartButton
-            // 
-            this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartButton.Location = new System.Drawing.Point(1000, 11);
-            this.StartButton.Margin = new System.Windows.Forms.Padding(6);
-            this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(224, 92);
-            this.StartButton.TabIndex = 5;
-            this.StartButton.Text = "Start";
-            this.StartButton.UseVisualStyleBackColor = true;
-            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // ClearButton
             // 
             this.ClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearButton.Location = new System.Drawing.Point(1326, 109);
-            this.ClearButton.Margin = new System.Windows.Forms.Padding(6);
+            this.ClearButton.Location = new System.Drawing.Point(723, 61);
             this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(135, 56);
+            this.ClearButton.Size = new System.Drawing.Size(74, 30);
             this.ClearButton.TabIndex = 6;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // StopButton
-            // 
-            this.StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StopButton.Location = new System.Drawing.Point(1236, 11);
-            this.StopButton.Margin = new System.Windows.Forms.Padding(6);
-            this.StopButton.Name = "StopButton";
-            this.StopButton.Size = new System.Drawing.Size(224, 92);
-            this.StopButton.TabIndex = 13;
-            this.StopButton.Text = "Stop";
-            this.StopButton.UseVisualStyleBackColor = true;
-            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
-            // 
-            // button5
-            // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(834, 182);
-            this.button5.Margin = new System.Windows.Forms.Padding(6);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(138, 42);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Smazat";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // AddedPortsLB
-            // 
-            this.AddedPortsLB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddedPortsLB.FormattingEnabled = true;
-            this.AddedPortsLB.ItemHeight = 24;
-            this.AddedPortsLB.Location = new System.Drawing.Point(486, 52);
-            this.AddedPortsLB.Margin = new System.Windows.Forms.Padding(6);
-            this.AddedPortsLB.Name = "AddedPortsLB";
-            this.AddedPortsLB.Size = new System.Drawing.Size(336, 172);
-            this.AddedPortsLB.TabIndex = 8;
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(480, 11);
-            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(249, 35);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Seznam portů:";
-            // 
-            // BaudRateTB
-            // 
-            this.BaudRateTB.Location = new System.Drawing.Point(132, 125);
-            this.BaudRateTB.Margin = new System.Windows.Forms.Padding(6);
-            this.BaudRateTB.Name = "BaudRateTB";
-            this.BaudRateTB.Size = new System.Drawing.Size(132, 29);
-            this.BaudRateTB.TabIndex = 2;
-            this.BaudRateTB.Text = "9600";
-            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(285, 66);
-            this.button4.Margin = new System.Windows.Forms.Padding(6);
+            this.button4.Location = new System.Drawing.Point(155, 36);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(138, 42);
+            this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 10;
             this.button4.Text = "Přidat";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // label3
+            // StopButton
             // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(6, 125);
-            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 24);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Bound-rate:";
+            this.StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.StopButton.Location = new System.Drawing.Point(674, 8);
+            this.StopButton.Name = "StopButton";
+            this.StopButton.Size = new System.Drawing.Size(122, 50);
+            this.StopButton.TabIndex = 13;
+            this.StopButton.Text = "Stop";
+            this.StopButton.UseVisualStyleBackColor = true;
+            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
+            // 
+            // StartButton
+            // 
+            this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.StartButton.Location = new System.Drawing.Point(545, 8);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(122, 50);
+            this.StartButton.TabIndex = 5;
+            this.StartButton.Text = "Start";
+            this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
+            // BaudRateTB
+            // 
+            this.BaudRateTB.Location = new System.Drawing.Point(72, 68);
+            this.BaudRateTB.Name = "BaudRateTB";
+            this.BaudRateTB.Size = new System.Drawing.Size(74, 20);
+            this.BaudRateTB.TabIndex = 2;
+            this.BaudRateTB.Text = "9600";
             // 
             // ComPortSelectCB
             // 
@@ -220,31 +169,68 @@
             "COM7",
             "COM8",
             "COM9"});
-            this.ComPortSelectCB.Location = new System.Drawing.Point(132, 72);
-            this.ComPortSelectCB.Margin = new System.Windows.Forms.Padding(6);
+            this.ComPortSelectCB.Location = new System.Drawing.Point(72, 39);
             this.ComPortSelectCB.Name = "ComPortSelectCB";
-            this.ComPortSelectCB.Size = new System.Drawing.Size(132, 32);
+            this.ComPortSelectCB.Size = new System.Drawing.Size(74, 21);
             this.ComPortSelectCB.TabIndex = 1;
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Location = new System.Drawing.Point(455, 101);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 11;
+            this.button5.Text = "Smazat";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(3, 68);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Bound-rate:";
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(62, 75);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Location = new System.Drawing.Point(34, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 24);
+            this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "COM:";
+            // 
+            // AddedPortsLB
+            // 
+            this.AddedPortsLB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddedPortsLB.FormattingEnabled = true;
+            this.AddedPortsLB.Location = new System.Drawing.Point(265, 28);
+            this.AddedPortsLB.Name = "AddedPortsLB";
+            this.AddedPortsLB.Size = new System.Drawing.Size(185, 95);
+            this.AddedPortsLB.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(15, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Location = new System.Drawing.Point(8, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(249, 35);
+            this.label1.Size = new System.Drawing.Size(136, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nastavení portu:";
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(262, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(136, 19);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Seznam portů:";
             // 
             // DataRefreshTimer
             // 
@@ -253,13 +239,12 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1467, 831);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(6);
-            this.MinimumSize = new System.Drawing.Size(1476, 849);
+            this.MinimumSize = new System.Drawing.Size(812, 478);
             this.Name = "Form1";
             this.Text = "PIRMS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
