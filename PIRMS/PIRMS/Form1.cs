@@ -74,6 +74,7 @@ namespace PIRMS
                 int index = AddedPortsLB.SelectedIndex;
                 AddedPortsLB.Items.Remove(AddedPortsLB.SelectedItem);
                 openComms.RemoveAt(index);
+                DataChart.Series.RemoveAt(index);
             }
             else
             {
@@ -156,7 +157,16 @@ namespace PIRMS
                     if (parts.Length > 0)
                     {
                         string comPort = parts[0].Trim(); // Např. "COM1"
+                                                          // Přidat novou čáru do grafu
+                        int seriesCount = DataChart.Series.Count;
                         openComms.Add(new SerialCommunication(comPort, SerialDataReceived));
+                        DataChart.Series.Add(comPort);
+
+                        // Nastavit formát grafu (osa x je datetime, typ grafu je čára)
+                        DataChart.Series[seriesCount].XValueType = ChartValueType.Double;
+                        DataChart.Series[seriesCount].ChartType = SeriesChartType.Line;
+                        DataChart.Series[seriesCount].Enabled = true;
+                        DataChart.Series[seriesCount].BorderWidth = 3;
                     }
 
 
