@@ -113,14 +113,6 @@ namespace PIRMS
             }
         }
 
-        private void ClearButton_Click(object sender, EventArgs e)
-        {
-            foreach (var serie in DataChart.Series)
-            {
-                serie.Points.Clear();
-            }
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadListBoxItems();
@@ -203,37 +195,28 @@ namespace PIRMS
 
         private void exportButton_Click(object sender, EventArgs e)
         {
-            List<Tuple<DateTime, double>> rows = new List<Tuple<DateTime, double>>();
-
+            string output = "";
             for (int i = 0; i < dataSnapshots.Count; i++)
             {
-                // Vzorkovací perioda je nastavena na 100 ms, takže první vzorek byl před 100 milisekundy přebrání zvuku.
-                // Bude tam nějaká nepřesnost způsobená tím, že se data teprve musí poslat
-                DateTime firstSampleTime = dataSnapshots[i].Item1 - TimeSpan.FromMilliseconds(100);
-
-                // Pokud celkové vzorkování trvalo 100 ms, tak jeden vzorek trval 100ms/počet vzorků (např 100ms/50 vzorků = 2ms na vzorek
-                TimeSpan sampleDuration = TimeSpan.FromMilliseconds(100.0 / dataSnapshots[i].Item2.Length);
-
-                for (int j = 0; j < dataSnapshots[i].Item2.Length; j++)
+                string val = "";
+                foreach (short num in dataSnapshots[i].Item2)
                 {
-                    DateTime sampleTime = firstSampleTime + (TimeSpan.FromMilliseconds(100 + (sampleDuration.Milliseconds*j)));
-                    rows.Add(new Tuple<DateTime, double>(sampleTime, dataSnapshots[i].Item2[j]));
+                    val += num.ToString() + ";";
                 }
-            }
-
-            string output = "";
-            while (rows.Count > 0)
-            {
-                output += $"{rows[0].Item1.ToShortTimeString()},{rows[0].Item2}\r\n";
-                rows.RemoveAt(0);
+                 val = val.Remove(val.Length - 1);
+                output += $"{dataSnapshots[i].Item1.ToShortTimeString()},{val}\r\n";
             }
 
             var diag = new SaveFileDialog();
-            diag.DefaultExt = "csv";
+            diag.FileName = "data";
+            diag.DefaultExt = ".csv";
             diag.AddExtension = true;
-            diag.ShowDialog();
-
-            dataSnapshots.Clear();
+            var result = diag.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                dataSnapshots.Clear();
+                File.WriteAllText(diag.FileName, output);
+            }
         }
     }
 }
