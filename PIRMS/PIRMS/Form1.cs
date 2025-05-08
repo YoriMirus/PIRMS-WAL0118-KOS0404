@@ -17,6 +17,7 @@ namespace PIRMS
     public partial class Form1 : Form
     {
         List<SerialCommunication> openComms = new List<SerialCommunication>();
+        List<Tuple<DateTime, short[]>> dataSnapshots = new List<Tuple<DateTime, short[]>>();
 
         public Form1()
         {
@@ -176,15 +177,21 @@ namespace PIRMS
 
         private void SerialDataReceived(SerialCommunication com, short[] data)
         {
-            // Proveď FFT, tato funkce vrací seznam tuplů, každý tuple má v sobě frekvenci (Hz) a její amplitudu
-            List<(double, double)> spectrum = SignalParsing.CalculateFft(data);
-
             // Vykreslení se musí provádět na vykreslovacím vlákně. V něm ale aktuálně nejsme, protože zpracovávání dat sériové linky se provádí ve svém vlastním vlákně
-            this.Invoke(new Action( () => { DisplayFFTData(spectrum, com.PortName); }));
+            this.Invoke(new Action( () => { DisplayFFTData(data, com.PortName); }));
         }
 
-        private void DisplayFFTData(List<(double, double)> fft, string port)
+        private void DisplayFFTData(short[] data, string port)
         {
+            dataSnapshots.Add(new Tuple<DateTime, short[]>(DateTime.Now, data));
+            if (dataSnapshots.Count > 100000)
+            {
+                dataSnapshots.RemoveRange(0, 1000);
+            }
+
+            // Proveď FFT, tato funkce vrací seznam tuplů, každý tuple má v sobě frekvenci (Hz) a její amplitudu
+            List<(double, double)> fft = SignalParsing.CalculateFft(data);
+
             var serie = DataChart.Series.Where(x => x.Name == port).First();
             serie.Points.Clear();
 
@@ -192,6 +199,41 @@ namespace PIRMS
             {
                 serie.Points.AddXY(member.Item1, member.Item2);
             }
+        }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            List<Tuple<DateTime, double>> rows = new List<Tuple<DateTime, double>>();
+
+            for (int i = 0; i < dataSnapshots.Count; i++)
+            {
+                // Vzorkovací perioda je nastavena na 100 ms, takže první vzorek byl před 100 milisekundy přebrání zvuku.
+                // Bude tam nějaká nepřesnost způsobená tím, že se data teprve musí poslat
+                DateTime firstSampleTime = dataSnapshots[i].Item1 - TimeSpan.FromMilliseconds(100);
+
+                // Pokud celkové vzorkování trvalo 100 ms, tak jeden vzorek trval 100ms/počet vzorků (např 100ms/50 vzorků = 2ms na vzorek
+                TimeSpan sampleDuration = TimeSpan.FromMilliseconds(100.0 / dataSnapshots[i].Item2.Length);
+
+                for (int j = 0; j < dataSnapshots[i].Item2.Length; j++)
+                {
+                    DateTime sampleTime = firstSampleTime + (TimeSpan.FromMilliseconds(100 + (sampleDuration.Milliseconds*j)));
+                    rows.Add(new Tuple<DateTime, double>(sampleTime, dataSnapshots[i].Item2[j]));
+                }
+            }
+
+            string output = "";
+            while (rows.Count > 0)
+            {
+                output += $"{rows[0].Item1.ToShortTimeString()},{rows[0].Item2}\r\n";
+                rows.RemoveAt(0);
+            }
+
+            var diag = new SaveFileDialog();
+            diag.DefaultExt = "csv";
+            diag.AddExtension = true;
+            diag.ShowDialog();
+
+            dataSnapshots.Clear();
         }
     }
 }
