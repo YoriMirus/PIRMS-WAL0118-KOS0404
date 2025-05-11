@@ -85,6 +85,7 @@ namespace PIRMS
 
         private void StartButton_Click(object sender, EventArgs e)
         {
+            this.ControlBox = false;
             if (openComms.Count == 0)
             {
                 MessageBox.Show("Před zahájením zadejte sledované porty.");
@@ -107,6 +108,7 @@ namespace PIRMS
         
         private void StopButton_Click(object sender, EventArgs e)
         {
+            this.ControlBox = true;
             foreach (SerialCommunication com in openComms)
             {
                 com.Close();
@@ -161,8 +163,6 @@ namespace PIRMS
                         DataChart.Series[seriesCount].Enabled = true;
                         DataChart.Series[seriesCount].BorderWidth = 3;
                     }
-
-
                 }
             }
         }

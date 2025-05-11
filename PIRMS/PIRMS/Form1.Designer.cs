@@ -82,8 +82,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2MinSize = 100;
-            this.splitContainer1.Size = new System.Drawing.Size(958, 557);
-            this.splitContainer1.SplitterDistance = 456;
+            this.splitContainer1.Size = new System.Drawing.Size(984, 561);
+            this.splitContainer1.SplitterDistance = 460;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -99,15 +99,15 @@
             legend2.Name = "Legend1";
             this.DataChart.Legends.Add(legend2);
             this.DataChart.Location = new System.Drawing.Point(0, 0);
-            this.DataChart.MinimumSize = new System.Drawing.Size(1150, 0);
             this.DataChart.Name = "DataChart";
-            this.DataChart.Size = new System.Drawing.Size(1150, 456);
+            this.DataChart.Size = new System.Drawing.Size(984, 460);
             this.DataChart.TabIndex = 0;
             this.DataChart.Text = "chart1";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(454, 22);
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(480, 22);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 40);
             this.button2.TabIndex = 15;
@@ -117,7 +117,8 @@
             // 
             // exportButton
             // 
-            this.exportButton.Location = new System.Drawing.Point(830, 22);
+            this.exportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportButton.Location = new System.Drawing.Point(856, 22);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(120, 40);
             this.exportButton.TabIndex = 14;
@@ -127,7 +128,8 @@
             // 
             // StartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(578, 22);
+            this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.StartButton.Location = new System.Drawing.Point(604, 22);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(120, 40);
             this.StartButton.TabIndex = 5;
@@ -137,7 +139,8 @@
             // 
             // StopButton
             // 
-            this.StopButton.Location = new System.Drawing.Point(704, 22);
+            this.StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.StopButton.Location = new System.Drawing.Point(730, 22);
             this.StopButton.Name = "StopButton";
             this.StopButton.Size = new System.Drawing.Size(120, 40);
             this.StopButton.TabIndex = 13;
@@ -201,6 +204,8 @@
             // 
             // AddedPortsLB
             // 
+            this.AddedPortsLB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.AddedPortsLB.FormattingEnabled = true;
             this.AddedPortsLB.Location = new System.Drawing.Point(265, 28);
             this.AddedPortsLB.Name = "AddedPortsLB";
@@ -230,9 +235,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(958, 557);
+            this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.splitContainer1);
-            this.MinimumSize = new System.Drawing.Size(807, 463);
+            this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "Form1";
             this.Text = "PIRMS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
