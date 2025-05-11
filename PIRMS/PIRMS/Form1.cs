@@ -204,7 +204,7 @@ namespace PIRMS
                     val += num.ToString() + ";";
                 }
                  val = val.Remove(val.Length - 1);
-                output += $"{dataSnapshots[i].Item1.ToShortTimeString()},{val}\r\n";
+                output += $"\"{dataSnapshots[i].Item1.ToLongTimeString()}\",{val}\r\n";
             }
 
             var diag = new SaveFileDialog();
