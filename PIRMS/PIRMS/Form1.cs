@@ -198,13 +198,8 @@ namespace PIRMS
             string output = "";
             for (int i = 0; i < dataSnapshots.Count; i++)
             {
-                string val = "";
-                foreach (short num in dataSnapshots[i].Item2)
-                {
-                    val += num.ToString() + ";";
-                }
-                 val = val.Remove(val.Length - 1);
-                output += $"\"{dataSnapshots[i].Item1.ToLongTimeString()}\",{val}\r\n";
+                string val = string.Join(",", dataSnapshots[i].Item2);
+                output += $"\"{dataSnapshots[i].Item1.ToString("yyyy-MM-dd HH:mm:ss.fff")}\",{val}\r\n";
             }
 
             var diag = new SaveFileDialog();
