@@ -52,7 +52,7 @@ namespace PIRMS
 
                 // Přidat novou čáru do grafu
                 int seriesCount = DataChart.Series.Count;
-                openComms.Add(new SerialCommunication(selectedPort, SerialDataReceived));
+                openComms.Add(new SerialCommunication(selectedPort, int.Parse(baudRate), SerialDataReceived));
                 DataChart.Series.Add(selectedPort);
 
                 // Nastavit formát grafu (osa x je datetime, typ grafu je čára)
@@ -152,9 +152,12 @@ namespace PIRMS
                     if (parts.Length > 0)
                     {
                         string comPort = parts[0].Trim(); // Např. "COM1"
-                                                          // Přidat novou čáru do grafu
+
+                        if (!int.TryParse(parts[1], out int baudRate))
+                            continue;
+
                         int seriesCount = DataChart.Series.Count;
-                        openComms.Add(new SerialCommunication(comPort, SerialDataReceived));
+                        openComms.Add(new SerialCommunication(comPort, baudRate, SerialDataReceived));
                         DataChart.Series.Add(comPort);
 
                         // Nastavit formát grafu (osa x je datetime, typ grafu je čára)

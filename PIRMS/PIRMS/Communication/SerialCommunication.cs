@@ -13,9 +13,10 @@ namespace PIRMS.Communication
         private Action<SerialCommunication, short[]> _onDataReceived;
         public string PortName { get => _port.PortName; }
 
-        public SerialCommunication(string portName, Action<SerialCommunication, short[]> onDataReceived)
+        public SerialCommunication(string portName, int baudRate, Action<SerialCommunication, short[]> onDataReceived)
         {
             _port = new SerialPort(portName);
+            _port.BaudRate = baudRate;
             _port.DataReceived += Port_DataReceived;
             _onDataReceived = onDataReceived;
         }
