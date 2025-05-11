@@ -17,7 +17,7 @@ namespace PIRMS
     public partial class Form1 : Form
     {
         List<SerialCommunication> openComms = new List<SerialCommunication>();
-        List<Tuple<DateTime, short[]>> dataSnapshots = new List<Tuple<DateTime, short[]>>();
+        List<Tuple<DateTime, string, short[]>> dataSnapshots = new List<Tuple<DateTime,string, short[]>>();
 
         public Form1()
         {
@@ -175,7 +175,7 @@ namespace PIRMS
 
         private void DisplayFFTData(short[] data, string port)
         {
-            dataSnapshots.Add(new Tuple<DateTime, short[]>(DateTime.Now, data));
+            dataSnapshots.Add(new Tuple<DateTime, string, short[]>(DateTime.Now, port, data));
             if (dataSnapshots.Count > 100000)
             {
                 dataSnapshots.RemoveRange(0, 1000);
@@ -195,11 +195,11 @@ namespace PIRMS
 
         private void exportButton_Click(object sender, EventArgs e)
         {
-            string output = "";
+            string output = "SampleTime;COM;Values\r\n";
             for (int i = 0; i < dataSnapshots.Count; i++)
             {
-                string val = string.Join(",", dataSnapshots[i].Item2);
-                output += $"\"{dataSnapshots[i].Item1.ToString("yyyy-MM-dd HH:mm:ss.fff")}\",{val}\r\n";
+                string val = string.Join(";", dataSnapshots[i].Item3);
+                output += $"\"{dataSnapshots[i].Item1.ToString("yyyy-MM-dd HH:mm:ss.fff")}\";{dataSnapshots[i].Item2};\"{val}\"\r\n";
             }
 
             var diag = new SaveFileDialog();
